@@ -1,26 +1,60 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Navbar />
+  <div class="middle">
+    <Sidebar />
+    <Content 
+      title="Reposts" 
+      tagline="Easily generate a report of your transactions" 
+    />
+  </div>
+  <Footer />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Navbar from './components/Navbar.vue'
+import Content from './components/Content.vue'
+import Sidebar from './components/Sidebar.vue'
+import Footer from './components/Footer.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Navbar,
+    Content,
+    Sidebar,
+    Footer
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  #app {
+    font-family: 'Roboto', sans-serif;
+    height: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .middle {
+    padding-right: 15px;
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  h1 {
+    color: #011F4B;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+h2 {
+  color: #7E8299;
+  font-size: 16px;
+  font-weight: bold;
 }
 </style>
