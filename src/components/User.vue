@@ -1,13 +1,20 @@
 <template>
-<ul class="user list-unstyled d-flex ms-auto">
-	<li class="avatar">JD</li>
-	<li class="name">John Doe</li>
+<ul v-if="usersData.length" class="user list-unstyled d-flex ms-auto">
+	<li class="avatar">
+		{{ usersData[0].firstName.match(/./)[0] }} {{ usersData[0].lastName.match(/./)[0] }}
+	</li>
+	<li class="name">
+		{{ usersData[0].firstName }} {{ usersData[0].lastName }}
+	</li>
 </ul>
 </template>
 
 <script>
 export default {
   name: 'User',
+	props: {
+    usersData: Object
+  }
 }
 </script>
 
