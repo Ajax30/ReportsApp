@@ -1,17 +1,19 @@
 <template>
 	<div class="sub-navigation">
 		<ProjectsDropdown
-			label="All projects" 
+			:label='"All projects"' 
 			:projectsData='projects'
 			/>
 
 		<GatewaysDropdown 
-			label="All gateways" 
+			:label='"All gateways"' 
 			:gatewaysData='gateways'
 		/>
 
 		<MyButton 
-			label="Generate report" 
+			@generateReport="$emit('generateReport')" 
+			:label='"Generate report"' 
+			:isReport='"false"' 
 		/>
 	</div>
 </template>
@@ -33,6 +35,8 @@ export default {
 	props: {
 		projectsData: Object
 	},
+
+	emits: ['generateReport'],
 
 	data() {
     return {

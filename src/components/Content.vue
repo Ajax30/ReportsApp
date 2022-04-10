@@ -7,6 +7,7 @@
       </div>
 
       <SubNavigation
+        @generateReport='generateReport'
         :projectsData='projects' 
         :gatewaysData='gateways' 
       />
@@ -47,12 +48,22 @@ export default {
     title: String,
     tagline: String,
   },
+
+  emits: [
+    'generateReport',
+  ],
   
   data() {
     return {
       isReport: false,
     }
   },
+
+  methods: {
+    generateReport() {
+      this.isReport = true;
+    }
+  }
 }
 </script>
 
