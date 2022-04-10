@@ -6,11 +6,14 @@
         <h2 class="tagline">{{ tagline }}</h2>
       </div>
 
-      <SubNavigation />
+      <SubNavigation
+        :projectsData='projects' 
+        :gatewaysData='gateways' 
+      />
     </div>
 
-    <div class="content" :class="{isData, 'mt-3' : 'my-auto'}">
-      <div v-if="isData" class="no-data">
+    <div class="content" :class="{report, 'mt-3' : 'my-auto'}">
+      <div v-if="true" class="no-data">
         <h4>No reports</h4>
         <p>Currently you have no data for the reports to be generated. Once you start generating traffic through the Balance application the reports will be shown.</p>
 
@@ -22,7 +25,7 @@
         <Accordion />
       </div>
 
-      <div class="total text-start">TOTAL: 14,065 USD</div>
+      <div v-if="false" class="total text-start">TOTAL: 14,065 USD</div>
     </div>
   </div>
 </template>
@@ -41,8 +44,8 @@ export default {
 	},
   props: {
     title: String,
-    tagline: String
-  }
+    tagline: String,
+  },
 }
 </script>
 

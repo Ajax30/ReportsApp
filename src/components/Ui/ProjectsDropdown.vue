@@ -1,20 +1,22 @@
 <template>
   <div class="dropdown">
-    <button type="button" class="btn btn-sm dropdown-toggle" data-bs-toggle="dropdown">
+    <button type="button" class="btn btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
        {{ label }}
     </button>
-    <ul class="dropdown-menu">
-			<li><a class="dropdown-item" href="#">Link 1</a></li>
-      <li><a class="dropdown-item" href="#">Link 1</a></li>
+    <ul v-if="projectsData?.length" class="dropdown-menu">
+			<li v-for="project in projectsData" :key="project.projectId">
+        <a class="dropdown-item" href="#">{{ project.name }}</a>
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'MyDropdown',
+  name: 'GatewaysDropdown',
   props: {
-    label: String
+    label: String,
+    projectsData: Object
   }
 }
 </script>

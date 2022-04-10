@@ -1,22 +1,68 @@
 <template>
 	<div class="sub-navigation">
-		<MyDropdown label="All projects" />
-		<MyDropdown label="All gateways" />
-		<MyButton label="Generate report" />
+		<ProjectsDropdown
+			label="All projects" 
+			:projectsData='projects'
+			/>
+
+		<GatewaysDropdown 
+			label="All gateways" 
+			:gatewaysData='gateways'
+		/>
+
+		<MyButton 
+			label="Generate report" 
+		/>
 	</div>
 </template>
 
 <script>
-import MyDropdown from './MyDropdown'
+import ProjectsDropdown from './ProjectsDropdown'
+import GatewaysDropdown from './GatewaysDropdown'
 import MyButton from './MyButton'
 
 export default {
+
   name: 'SubNavigation',
 
   components: {
-		MyDropdown,
+		ProjectsDropdown,
+		GatewaysDropdown,
     MyButton
-	}
+	},
+
+	props: {
+		projectsData: Object
+	},
+
+	data() {
+    return {
+      url: 'http://178.63.13.157:8090/mock-api/api',
+      projects: [],
+			gateways: []
+    }
+  },
+  async mounted() {
+    // Projects
+    await this.axios.get(`${this.url}/projects`).then((response) => {
+      if (response.data.code == 200) {
+        this.projects = response.data.data;
+        console.log(this.projects);
+      }
+    }).catch((errors) => {
+      console.log(errors);
+    });
+
+		// Gateways
+    await this.axios.get(`${this.url}/gateways`).then((response) => {
+      if (response.data.code == 200) {
+        this.gateways = response.data.data;
+        console.log(this.gateways);
+      }
+    }).catch((errors) => {
+      console.log(errors);
+    });
+  }
 }
 </script>
 

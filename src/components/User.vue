@@ -13,8 +13,8 @@
 export default {
   name: 'User',
 	props: {
-    usersData: Object
-  }
+		usersData: Object
+	}
 }
 </script>
 

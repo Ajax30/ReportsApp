@@ -24,9 +24,6 @@ export default {
 	components: {
 		User
 	},
-	props: {
-    usersData: Object
-  },
 
 	data() {
     return {
