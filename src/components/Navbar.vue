@@ -19,7 +19,7 @@
 import User from './User.vue'
 
 export default {
-
+	inject: ['$apiBaseUrl'],
   name: 'Navbar',
 	components: {
 		User
@@ -27,13 +27,12 @@ export default {
 
 	data() {
     return {
-      url: 'http://178.63.13.157:8090/mock-api/api',
       users: [],
     }
   },
   async mounted() {
     // Users
-    await this.axios.get(`${this.url}/users`).then((response) => {
+    await this.axios.get(`${this.$apiBaseUrl}/users`).then((response) => {
       if (response.data.code == 200) {
         this.users = response.data.data;
         console.log(this.users);
