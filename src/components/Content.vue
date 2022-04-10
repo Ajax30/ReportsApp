@@ -13,19 +13,20 @@
     </div>
 
     <div class="content" :class="{report, 'mt-3' : 'my-auto'}">
-      <div v-if="true" class="no-data">
+
+      <div v-if="isReport" class="data-container">
+        <DataToggle />
+        <Accordion />
+      </div>
+
+      <div v-else class="no-data">
         <h4>No reports</h4>
         <p>Currently you have no data for the reports to be generated. Once you start generating traffic through the Balance application the reports will be shown.</p>
 
         <img src="/img/no-data.png" class="img-fluid" alt="No data to display">
       </div>
 
-      <div class="data-container" v-else>
-        <DataToggle />
-        <Accordion />
-      </div>
-
-      <div v-if="false" class="total text-start">TOTAL: 14,065 USD</div>
+      <div v-if="isReport" class="total text-start">TOTAL: 14,065 USD</div>
     </div>
   </div>
 </template>
@@ -45,6 +46,12 @@ export default {
   props: {
     title: String,
     tagline: String,
+  },
+  
+  data() {
+    return {
+      isReport: false,
+    }
   },
 }
 </script>

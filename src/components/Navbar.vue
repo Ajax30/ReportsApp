@@ -30,6 +30,7 @@ export default {
       users: [],
     }
   },
+	
   async mounted() {
     // Users
     await this.axios.get(`${this.$apiBaseUrl}/users`).then((response) => {
