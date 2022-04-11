@@ -1,5 +1,5 @@
 <template>
-  <Navbar />
+  <Navbar :users='users' />
   <div class="middle">
     <Sidebar />
     <Content 
@@ -22,9 +22,10 @@ export default {
     Navbar,
     Content,
     Sidebar,
-    Footer
-  }
+    Footer  
+  },
 }
+
 </script>
 
 <style>

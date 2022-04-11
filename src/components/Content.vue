@@ -6,23 +6,30 @@
         <h2 class="tagline">{{ tagline }}</h2>
       </div>
 
-      <SubNavigation />
+      <SubNavigation
+        @getProject='getProject'
+        @getGateway='getGateway'
+        @generateReport='generateReport'
+        :projectsData='projects' 
+        :gatewaysData='gateways' 
+      />
     </div>
 
-    <div class="content" :class="{isData, 'mt-3' : 'my-auto'}">
-      <div v-if="isData" class="no-data">
+    <div class="content" :class="{report, 'mt-3' : 'my-auto'}">
+
+      <div v-if="isReport" class="data-container">
+        <DataToggle />
+        <Accordion />
+      </div>
+
+      <div v-else class="no-data">
         <h4>No reports</h4>
         <p>Currently you have no data for the reports to be generated. Once you start generating traffic through the Balance application the reports will be shown.</p>
 
         <img src="/img/no-data.png" class="img-fluid" alt="No data to display">
       </div>
 
-      <div class="data-container" v-else>
-        <DataToggle />
-        <Accordion />
-      </div>
-
-      <div class="total text-start">TOTAL: 14,065 USD</div>
+      <div v-if="isReport" class="total text-start">TOTAL: 14,065 USD</div>
     </div>
   </div>
 </template>
@@ -41,7 +48,37 @@ export default {
 	},
   props: {
     title: String,
-    tagline: String
+    tagline: String,
+  },
+
+  emits: [
+    'getProject',
+    'getGateway',
+    'generateReport',
+  ],
+  
+  data() {
+    return {
+      isReport: false,
+      projectId: '',
+      gatewayId: '',
+    }
+  },
+
+  methods: {
+    generateReport() {
+      this.isReport = true;
+    },
+
+    getProject(project) {
+       this.projectId = project.projectId;
+       console.log(this.projectId);
+    },
+
+    getGateway(gateway) {
+      this.gatewayId = gateway.gatewayId;
+      console.log(this.gatewayId);
+    }
   }
 }
 </script>

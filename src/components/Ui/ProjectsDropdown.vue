@@ -1,0 +1,60 @@
+<template>
+  <div class="dropdown">
+    <button type="button" class="btn btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+       {{ label }}
+    </button>
+    <ul v-if="projectsData?.length" class="dropdown-menu">
+			<li v-for="project in projectsData" :key="project.projectId">
+        <a class="dropdown-item"  @click="handleClick(project)">{{ project.name }}</a>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'ProjectsDropdown',
+  props: {
+    label: String,
+    projectsData: Object,
+    project: Object
+  },
+
+  methods: {
+    handleClick(project) {
+      this.$emit('getProject', project)
+    }
+  }
+}
+</script>
+
+<style scoped>
+  .dropdown-toggle {
+    background: #1BC5BD;
+    font-size: 14px;
+    color: #fff;
+    box-shadow: none;
+    margin-right: 5px;
+  }
+
+  .dropdown-menu {
+    transform: translate3d(0, 32px, 0) !important;
+  }
+
+  .dropdown-item {
+    font-size: 13px;
+    cursor: pointer;
+  }
+
+  @media only screen and (max-width: 575px) {
+		.dropdown {
+			margin-right: 0;
+			margin-bottom: 5px;
+			width: 100%;
+		}
+
+    .dropdown-toggle {
+      width: 100%;
+    }
+	}
+</style>

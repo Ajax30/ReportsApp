@@ -1,20 +1,28 @@
 <template>
   <div class="dropdown">
-    <button type="button" class="btn btn-sm dropdown-toggle" data-bs-toggle="dropdown">
+    <button type="button" class="btn btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
        {{ label }}
     </button>
-    <ul class="dropdown-menu">
-			<li><a class="dropdown-item" href="#">Link 1</a></li>
-      <li><a class="dropdown-item" href="#">Link 1</a></li>
+    <ul v-if="gatewaysData?.length" class="dropdown-menu">
+			<li v-for="gateway in gatewaysData" :key="gateway.gatewayId">
+        <a class="dropdown-item" @click="handleClick(gateway)">{{ gateway.name }}</a>
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'MyDropdown',
+  name: 'GatewaysDropdown',
   props: {
-    label: String
+    label: String,
+    gatewaysData: Object,
+    gateway: Object
+  },
+  methods: {
+    handleClick(gateway) {
+      this.$emit('getGateway', gateway);
+    },
   }
 }
 </script>
@@ -34,6 +42,7 @@ export default {
 
   .dropdown-item {
     font-size: 13px;
+    cursor: pointer;
   }
 
   @media only screen and (max-width: 575px) {

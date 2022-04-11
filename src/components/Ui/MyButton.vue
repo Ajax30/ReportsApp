@@ -1,5 +1,5 @@
 <template>
-  <button class="btn btn-sm btn-generate">
+  <button @click="handleClick" class="btn btn-sm btn-generate">
     {{ label }}
   </button>
 </template>
@@ -8,7 +8,14 @@
 export default {
   name: 'MyButton',
   props: {
-    label: String
+    label: String,
+    isReport: Boolean
+  },
+
+   methods: {
+    handleClick() {
+      this.$emit('generateReport')
+    }
   }
 }
 </script>

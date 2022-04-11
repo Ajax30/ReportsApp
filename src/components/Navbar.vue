@@ -10,7 +10,7 @@
 					<span class="bottom"></span>
         </button>
 
-				<User />
+				<User :usersData='users' />
     </div>
 	</nav>
 </template>
@@ -19,10 +19,28 @@
 import User from './User.vue'
 
 export default {
+	inject: ['$apiBaseUrl'],
   name: 'Navbar',
 	components: {
 		User
-	}
+	},
+
+	data() {
+    return {
+      users: [],
+    }
+  },
+	
+  async mounted() {
+    // Users
+    await this.axios.get(`${this.$apiBaseUrl}/users`).then((response) => {
+      if (response.data.code == 200) {
+        this.users = response.data.data;
+      }
+    }).catch((errors) => {
+      console.log(errors);
+    });
+  }
 }
 </script>
 
@@ -49,6 +67,13 @@ export default {
 		width: 30px;
 		height: 27px;
 		box-shadow: none !important;
+		display: none;
+	}
+
+	@media only screen and (min-width: 576px) {
+		.navbar-toggler {
+			display: block;
+		}
 	}
 
 	.navbar-toggler span {
