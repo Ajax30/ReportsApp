@@ -43,6 +43,7 @@ export default {
 
   .dropdown-item {
     font-size: 13px;
+    cursor: pointer;
   }
 
   @media only screen and (max-width: 575px) {

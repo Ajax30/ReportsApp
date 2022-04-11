@@ -1,12 +1,13 @@
 <template>
 	<div class="sub-navigation">
 		<ProjectsDropdown
-			@getProject="getProject"
+			@getProject='getProject'
 			:label='"All projects"' 
 			:projectsData='projects'
 			/>
 
-		<GatewaysDropdown 
+		<GatewaysDropdown
+			@getGateway='getGateway' 
 			:label='"All gateways"' 
 			:gatewaysData='gateways'
 		/>
@@ -34,13 +35,9 @@ export default {
 	},
 
 	props: {
-		projectsData: Object
+		projectsData: Object,
+		gatewaysData: Object
 	},
-
-	emits: [
-		'getProject',
-		'generateReport'
-	],
 
 	data() {
     return {
@@ -52,6 +49,10 @@ export default {
     getProject(project) {
       this.$emit('getProject', project);
     },
+
+		getGateway(gateway) {
+      this.$emit('getGateway', gateway);
+    }
   },
   async mounted() {
     // Projects

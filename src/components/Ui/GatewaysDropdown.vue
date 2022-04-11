@@ -5,7 +5,7 @@
     </button>
     <ul v-if="gatewaysData?.length" class="dropdown-menu">
 			<li v-for="gateway in gatewaysData" :key="gateway.gatewayId">
-        <a class="dropdown-item">{{ gateway.name }}</a>
+        <a class="dropdown-item" @click="handleClick(gateway)">{{ gateway.name }}</a>
       </li>
     </ul>
   </div>
@@ -16,7 +16,13 @@ export default {
   name: 'GatewaysDropdown',
   props: {
     label: String,
-    gatewaysData: Object
+    gatewaysData: Object,
+    gateway: Object
+  },
+  methods: {
+    handleClick(gateway) {
+      this.$emit('getGateway', gateway);
+    },
   }
 }
 </script>
@@ -36,6 +42,7 @@ export default {
 
   .dropdown-item {
     font-size: 13px;
+    cursor: pointer;
   }
 
   @media only screen and (max-width: 575px) {
