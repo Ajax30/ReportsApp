@@ -5,7 +5,7 @@
     </button>
     <ul v-if="gatewaysData?.length" class="dropdown-menu">
 			<li v-for="gateway in gatewaysData" :key="gateway.gatewayId">
-        <a class="dropdown-item" href="#">{{ gateway.name }}</a>
+        <a class="dropdown-item">{{ gateway.name }}</a>
       </li>
     </ul>
   </div>
@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: 'ProjectsDropdown',
+  name: 'GatewaysDropdown',
   props: {
     label: String,
     gatewaysData: Object

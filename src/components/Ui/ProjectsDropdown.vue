@@ -5,7 +5,7 @@
     </button>
     <ul v-if="projectsData?.length" class="dropdown-menu">
 			<li v-for="project in projectsData" :key="project.projectId">
-        <a class="dropdown-item" href="#">{{ project.name }}</a>
+        <a class="dropdown-item"  @click="handleClick(project)">{{ project.name }}</a>
       </li>
     </ul>
   </div>
@@ -13,10 +13,17 @@
 
 <script>
 export default {
-  name: 'GatewaysDropdown',
+  name: 'ProjectsDropdown',
   props: {
     label: String,
-    projectsData: Object
+    projectsData: Object,
+    project: Object
+  },
+
+  methods: {
+    handleClick(project) {
+      this.$emit('getProject', project)
+    }
   }
 }
 </script>

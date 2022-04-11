@@ -7,6 +7,7 @@
       </div>
 
       <SubNavigation
+        @getProject='getProject'
         @generateReport='generateReport'
         :projectsData='projects' 
         :gatewaysData='gateways' 
@@ -50,18 +51,30 @@ export default {
   },
 
   emits: [
+    'getProject',
     'generateReport',
   ],
   
   data() {
     return {
       isReport: false,
+      projectId: '',
+      gatewayId: '',
     }
   },
 
   methods: {
     generateReport() {
       this.isReport = true;
+    },
+
+    getProject(project) {
+       this.projectId = project.projectId;
+    },
+
+    getGateway(gateway) {
+      this.gatewayId = gateway.gatewayId;
+      console.log(this.gatewayId);
     }
   }
 }

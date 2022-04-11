@@ -12,8 +12,6 @@ export default {
     isReport: Boolean
   },
 
-  emits: ['generateReport'],
-
    methods: {
     handleClick() {
       this.$emit('generateReport')

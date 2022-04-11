@@ -1,6 +1,7 @@
 <template>
 	<div class="sub-navigation">
 		<ProjectsDropdown
+			@getProject="getProject"
 			:label='"All projects"' 
 			:projectsData='projects'
 			/>
@@ -36,7 +37,10 @@ export default {
 		projectsData: Object
 	},
 
-	emits: ['generateReport'],
+	emits: [
+		'getProject',
+		'generateReport'
+	],
 
 	data() {
     return {
@@ -44,12 +48,16 @@ export default {
 			gateways: []
     }
   },
+	methods: {
+    getProject(project) {
+      this.$emit('getProject', project);
+    },
+  },
   async mounted() {
     // Projects
     await this.axios.get(`${this.$apiBaseUrl}/projects`).then((response) => {
       if (response.data.code == 200) {
         this.projects = response.data.data;
-        console.log(this.projects);
       }
     }).catch((errors) => {
       console.log(errors);
@@ -59,7 +67,6 @@ export default {
     await this.axios.get(`${this.$apiBaseUrl}/gateways`).then((response) => {
       if (response.data.code == 200) {
         this.gateways = response.data.data;
-        console.log(this.gateways);
       }
     }).catch((errors) => {
       console.log(errors);

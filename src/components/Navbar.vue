@@ -36,7 +36,6 @@ export default {
     await this.axios.get(`${this.$apiBaseUrl}/users`).then((response) => {
       if (response.data.code == 200) {
         this.users = response.data.data;
-        console.log(this.users);
       }
     }).catch((errors) => {
       console.log(errors);
