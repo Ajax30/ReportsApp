@@ -40,12 +40,14 @@ import DataToggle  from './Ui/DataToggle'
 import Accordion from './Accordion/Accordion'
 
 export default {
+  inject: ['$apiBaseUrl'],
   name: 'Content',
   components: {
 		SubNavigation,
     DataToggle,
     Accordion
 	},
+  
   props: {
     title: String,
     tagline: String,
@@ -59,26 +61,43 @@ export default {
   
   data() {
     return {
+      headers: {
+        'content-type': 'application/json',
+        'Accept': 'application/json'
+      },
       isReport: false,
       projectId: '',
       gatewayId: '',
+      fields: {},
+      errors: {},
     }
   },
 
   methods: {
-    generateReport() {
-      this.isReport = true;
-    },
-
     getProject(project) {
        this.projectId = project.projectId;
-       console.log(this.projectId);
     },
 
     getGateway(gateway) {
       this.gatewayId = gateway.gatewayId;
-      console.log(this.gatewayId);
-    }
+    },
+
+    generateReport() {
+      // Populate the fields
+      this.fields.projectId = this.projectId;
+      this.fields.gatewayId = this.gatewayId;
+
+      //console.log(this.fields);
+
+      this.axios.post(`${this.$apiBaseUrl}/report`, this.fields, {options: this.headers}).then((response) => {
+       if (response.data.code == 200) {
+          this.isReport = true;
+        }
+      }).catch((errors) => {
+        this.errors = errors.response.data.errors;
+      });
+    },
+
   }
 }
 </script>
