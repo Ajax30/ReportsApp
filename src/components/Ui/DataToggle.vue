@@ -14,10 +14,6 @@
 
 export default {
   name: 'DataToggle',
-
-	components: {
-	
-	},
 }
 </script>
 

@@ -45,7 +45,7 @@ export default {
     cursor: pointer;
   }
 
-  @media only screen and (max-width: 575px) {
+  @media only screen and (max-width: 767px) {
 		.dropdown {
 			margin-right: 0;
 			margin-bottom: 5px;

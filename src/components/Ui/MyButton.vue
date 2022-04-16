@@ -26,7 +26,7 @@ export default {
     color: #fff;
   }
 
-  @media only screen and (max-width: 575px) {
+  @media only screen and (max-width: 767px) {
 		.btn-generate {
       width: 100%;
     }

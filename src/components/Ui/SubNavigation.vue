@@ -12,6 +12,10 @@
 			:gatewaysData='gateways'
 		/>
 
+		<Datepicker />
+
+		<Datepicker />
+
 		<MyButton 
 			@generateReport="$emit('generateReport')" 
 			:label='"Generate report"' 
@@ -23,6 +27,7 @@
 <script>
 import ProjectsDropdown from './ProjectsDropdown'
 import GatewaysDropdown from './GatewaysDropdown'
+import Datepicker from './Datepicker'
 import MyButton from './MyButton'
 
 export default {
@@ -31,6 +36,7 @@ export default {
   components: {
 		ProjectsDropdown,
 		GatewaysDropdown,
+		Datepicker,
     MyButton
 	},
 
